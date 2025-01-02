@@ -1,4 +1,5 @@
 // import React, { useEffect } from "react";
+
 // import LoginForm from "./Components/Login/LoginForm";
 // import Employeepage from "./Components/Employee/Employeepage";
 // import {
@@ -26,7 +27,7 @@
 //   useEffect(()=>{
 
 //   })
-  
+
 //   return (
 //     <Router>
 //       <div>
@@ -75,20 +76,20 @@ import { InactivityProvider } from "./Components/Context/Inactivity";
 import ProtectedRoute from "./ProtectedRotes";
 
 const handleInactivity = () => {
- console.log(
-  'don'
- )
- localStorage.removeItem("userToken");
- localStorage.removeItem("userDetails");
- localStorage.removeItem("navigateState");
- localStorage.removeItem("isLoggedIn");
+  console.log(
+    'don'
+  )
+  localStorage.removeItem("userToken");
+  localStorage.removeItem("userDetails");
+  localStorage.removeItem("navigateState");
+  localStorage.removeItem("isLoggedIn");
   window.location.href = "/";
 };
 const InactivityWrapper = ({ children }) => {
   const location = useLocation();
 
   // Define the paths where inactivity tracking should be applied
-  const pathsWithInactivity = ['/employee', '/leave-balance','/teamleader','/admin','/drafts','/founder','/summary','/editdrafts','/LeaveSummary'];
+  const pathsWithInactivity = ['/employee', '/leave-balance', '/teamleader', '/admin', '/drafts', '/founder', '/summary', '/editdrafts', '/LeaveSummary'];
 
   if (pathsWithInactivity.includes(location.pathname)) {
     return (
@@ -105,43 +106,43 @@ export default function App() {
     <Router>
       <InactivityWrapper>
         <Routes>
-          <Route path="/" element={<LoginForm />} />       
+          <Route path="/" element={<LoginForm />} />
           {/* <Route path="/employee" element={<Employeepage />} /> */}
           <Route
-          path="/employee"
-          element={
-            <ProtectedRoute
-              component={Employeepage}
-              allowedRoles={['D001', 'D016', 'D005', 'D006', 'D009', 'D013', 'D014']}
-            />
-          }
-        />
+            path="/employee"
+            element={
+              <ProtectedRoute
+                component={Employeepage}
+                allowedRoles={['D001', 'D016', 'D005', 'D006', 'D009', 'D013', 'D014']}
+              />
+            }
+          />
           {/* <Route path="/teamleader" element={<TeamleaderPage />} /> */}
           <Route
-          path="/teamleader"
-          element={
-            <ProtectedRoute
-              component={TeamleaderPage}
-              allowedRoles={['D003', 'D002', 'D012', 'D008', 'D007']}
-            />
-          }
-        />
+            path="/teamleader"
+            element={
+              <ProtectedRoute
+                component={TeamleaderPage}
+                allowedRoles={['D003', 'D002', 'D012', 'D008', 'D007']}
+              />
+            }
+          />
           {/* <Route path="/admin" element={<Adminpage />} /> */}
           <Route
-          path="/admin"
-          element={<ProtectedRoute component={Adminpage} allowedRoles={['D011']} />}
-        />
+            path="/admin"
+            element={<ProtectedRoute component={Adminpage} allowedRoles={['D011']} />}
+          />
           <Route path="/leave-balance" element={<LeaveBalance />} />
           <Route path="/drafts" element={<Drafts />} />
           {/* <Route path="/founder" element={<Founder />} /> */}
           <Route
-          path="/founder"
-          element={<ProtectedRoute component={Founder} allowedRoles={['D010']} />}
-        />
+            path="/founder"
+            element={<ProtectedRoute component={Founder} allowedRoles={['D010']} />}
+          />
           <Route path="/summary" element={<SummaryPage />} />
           <Route path="/editdrafts" element={<EditDrafts />} />
-          <Route path="/LeaveSummary" element={<LeaveSummary />} />  
-          <Route path="/sessionreminder" element={< ReminderSession/>} />   
+          <Route path="/LeaveSummary" element={<LeaveSummary />} />
+          <Route path="/sessionreminder" element={< ReminderSession />} />
         </Routes>
       </InactivityWrapper>
     </Router>
